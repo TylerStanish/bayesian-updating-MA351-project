@@ -54,14 +54,14 @@ continuous_updating_by_n <- function(update_n_times, init_sample_size, new_sampl
   }
   data.frame(errors_intercept = errors_intercept, errors_coeff = errors_coeff, n = 1:update_n_times)
 }
-res11 <- continuous_updating_by_n(500, 1000, ceiling(sqrt(1000)))
+res11 <- continuous_updating_by_n(2000, 10000, ceiling(sqrt(10000)))
 ggplot(data = res11, aes(x = n, y = errors_intercept)) + 
   geom_point(aes(y = errors_intercept, col = 'red')) +
   stat_smooth(method = 'loess', color = 'blue') + 
-  ggtitle("n=2000, initial_size=1000, batch_size=32") + 
+  ggtitle("n=2000, initial_size=10000, batch_size=100") + 
   ylab("Error for Intercept (%)")
 ggplot(data = res11, aes(x = n, y = errors_coeff)) + 
   geom_point(aes(y = errors_coeff, col = 'red')) +
   stat_smooth(method = 'loess', color = 'blue') + 
-  ggtitle("n=2000, initial_size=1000, batch_size=32") + 
+  ggtitle("n=2000, initial_size=10000, batch_size=100") + 
   ylab("Error for Coefficient (%)")
